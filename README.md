@@ -800,7 +800,11 @@ Implementation 'how to find contours in binary image':
 2. Load an image
 3. Convert image color to gray
 4. Use `cv.threshold()` to create threshold of an image
-5. Find contours in image with `cv.findContours()`
+5. Find contours in image with `cv.findContours()`, parameters:
+
+    * source image
+    * contour retrieval mode
+    * contour approximation method
 ```
 import numpy as np
 import cv2 as cv
@@ -817,6 +821,32 @@ ret, thresh = cv.threshold(imgray, 127, 255, 0)
 # find contours
 contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 ```
+
+## Draw The Contours
+To draw the contours, we use `cv.drawContours()` with parameters:
+    
+    * source image
+    * contours which should be passed
+    * index of contours
+    * color, thickness, etc.
+1. To draw all the contours in an image:
+```
+cv.drawContours(img, contours, -1, (0,255,0), 3)
+```
+2. To draw an individual contour
+```
+cv.drawContours(img, contours, 3, (0,255,0), 3)
+```
+3. Another method
+```
+cnt = contours[4]
+cv.drawContours(img, [cnt], 0, (0,255,0), 3)
+```
+
+## Contour Approximation Method
+Contour approximation method is the third argument in function `cv.findContours()`. There are 2 methods:
+1. `cv.CHAIN_APPROX_NONE` : stores all the boundary points
+2. `cv.CHAIN_APPROX_SIMPLE` : just need two end points of each lines
 
 # Documentation Color Detection - Optional Assignment
 This program can detect object inside background area. Implementation:
