@@ -7,10 +7,12 @@ def nothing():
  
 # capture video from the stream
 webcam = cv.VideoCapture(0)
+
+# create new windows for trackbars
 cv.namedWindow('Colorbars Background')
 cv.namedWindow('Colorbars Object')
  
-# assign strings for ease of coding
+# assign strings for title of each trackbar
 hue_high    = 'Hue High'
 hue_low     = 'Hue Low'
 sat_high    = 'Saturation High'
@@ -66,35 +68,36 @@ while True:
     area_min_object = cv.getTrackbarPos(area_min, window2)
 
     # make array from final values
+    # for background
     hsv_lower_background = np.array([hue_low_background, sat_low_background,
                                      val_low_background], np.uint8)
     hsv_upper_background = np.array([hue_high_background, sat_high_background,
                                      val_high_background], np.uint8)    
 
+    # for object
     hsv_lower_object = np.array([hue_low_object, sat_low_object, val_low_object],
                                  np.uint8)
     hsv_upper_object = np.array([hue_high_object, sat_high_object, val_high_object],
                                  np.uint8)    
 
     # define area minimum and create mask
+    # for background
     area_min_background = area_min_background
     background_mask     = cv.inRange(hsv_frame, hsv_lower_background, hsv_upper_background)
 
+    # for object
     area_min_object = area_min_object
     object_mask     = cv.inRange(hsv_frame, hsv_lower_object, hsv_upper_object)
 
+    # create a new kernel with size 5x5
     kernel = np.ones((5, 5), np.uint8)
 
-    # result for background
+    # apply closing to background mask
     background_mask = cv.morphologyEx(background_mask, cv.MORPH_OPEN, kernel)
-    res_background  = cv.bitwise_and(image_frame, image_frame,
-                                     mask = background_mask)
     cv.imshow("Background Mask", background_mask)
 
-    # result for object
-    object_mask     = cv.morphologyEx(object_mask, cv.MORPH_CLOSE, kernel)
-    res_object      = cv.bitwise_and(image_frame, image_frame,
-                                     mask = object_mask)
+    # apply closing to object mask
+    object_mask = cv.morphologyEx(object_mask, cv.MORPH_CLOSE, kernel)
     cv.imshow("Object Mask", object_mask)
 
     # create contour to track background
@@ -141,16 +144,3 @@ while True:
         cap.release()
         cv.destroyAllWindows()
         break
-
-
-    # green_lower = np.array([25, 52, 72], np.uint8)
-    # green_upper = np.array([102, 255, 255], np.uint8)
-    # green_mask = cv.inRange(hsv_frame, green_lower, green_upper)
-
-    # blue_lower = np.array([94, 80, 2], np.uint8)
-    # blue_upper = np.array([120, 255, 255], np.uint8)
-    # blue_mask = cv.inRange(hsv_frame, blue_lower, blue_upper)
-
-    # red_lower = np.array([136, 87, 111], np.uint8)
-    # red_upper = np.array([180, 255, 255], np.uint8)
-    # red_mask = cv.inRange(hsv_frame, red_lower, red_upper)
