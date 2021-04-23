@@ -246,7 +246,7 @@ Thresholding is method to assign pixel value in relation to the threshold value 
 From this implementation code, the steps are:
 1. Use library `cv2`, `numpy`, and `matplotlib`
 2. Load an image
-3. Use `cv.threshold()` to threshold an image with parameters: 
+3. Use `cv.threshold()` with parameters: 
     * source image -> should be a grayscale image
     * threshold value
     * maximum value -> assigned to pixel value that exceeding threshold
@@ -297,7 +297,7 @@ Adaptive thresholding is used for image that has different lighting conditions i
 Implementation steps of adaptive thresholding:
 1. Use library `cv2`, `numpy`, and `matplotlib`
 2. Load an image which has different lighting conditions in different areas.
-3. Use `cv.medianBlur()` to blur an image and reduce noise before threshold an image
+3. Use `cv.medianBlur()` to blur an image and reduce noise before thresholding
 4. Use `cv.threshold()` to compare global thresholding with adaptive thresholding
 5. Use `cv.adaptiveThresholding()` with parameters: 
     * source image
@@ -456,13 +456,17 @@ plt.show()
 ## Image Blurring (Image Smoothing)
 Image blurring is used to remove the noises and the other high frequency content. There are 4 types of blurring techniques:
 1. Averaging
-Averaging is blurring technique that takes average of pixels under the kernel area and then replaces the central elements with average value. We can use `cv.blur()` with parameters image source and kernel size.
+    
+    Averaging is blurring technique that takes average of pixels under the kernel area and then replaces the central elements with average value. We can use `cv.blur()` with parameters image source and kernel size.
 2. Gaussian Blurring
-In gaussian blurring technique, we can use `cv.GaussianBlur()` with parameters image source, kernel size, and standard deviation in X and Y direction. We should specify the width and the height of the kernel which should be positive and odd number. We also should specify the standard deviation in X and Y direction.
+    
+    In gaussian blurring technique, we can use `cv.GaussianBlur()` with parameters image source, kernel size, and standard deviation in X and Y direction. We should specify the width and the height of the kernel which should be positive and odd number. We also should specify the standard deviation in X and Y direction.
 3. Median blurring
-Median blurring technique takes the median of all pixels under the kernel and replaces the central element with the median value. We can use `cv.medianBlur()` with parameters image source and kernel size. The kernel size should be positive and odd number.
+    
+    Median blurring technique takes the median of all pixels under the kernel and replaces the central element with the median value. We can use `cv.medianBlur()` with parameters image source and kernel size. The kernel size should be positive and odd number.
 4. Bilateral Filtering 
-Bilateral filtering technique is used to remove noise but still keep the edges sharp. We can use `cv.bilateralFilter()` with parameters image source, diameter of each pixel neighbourhood (that is used during filtering), sigma color, and sigma space.
+    
+    Bilateral filtering technique is used to remove noise but still keep the edges sharp. We can use `cv.bilateralFilter()` with parameters image source, diameter of each pixel neighbourhood (that is used during filtering), sigma color, and sigma space.
 
 Implementation in program:
 1. Use library `cv2`, `numpy`, and `matplotlib`
@@ -514,19 +518,26 @@ plt.show()
 # Morphological Transformations
 Some simple operations based on image shape (normally performed on binary image). The inputs are image source and kernel.
 1. Erosion
-Erosion is used to decrease the thickness of the foreground object. It is useful for removing small noise. We can use `cv.erode()` with parameters image source, kernel, and iterations (number of times erosion applied).
+
+    Erosion is used to decrease the thickness of the foreground object. It is useful for removing small noise. We can use `cv.erode()` with parameters image source, kernel, and iterations (number of times erosion applied).
 2. Dilation
-Dilation is used to increase the thickness of the foreground object. After we erosion and remove noise of an object area, we can use dilation to increase object area. We can use `cv.dilate()` with parameters image source, kernel, and iterations (number of times dilation applied).
+    
+    Dilation is used to increase the thickness of the foreground object. After we erosion and remove noise of an object area, we can use dilation to increase object area. We can use `cv.dilate()` with parameters image source, kernel, and iterations (number of times dilation applied).
 3. Opening
-Opening is another name of **erosion followed by dilation**. It is useful to remove noise. We can use `cv.morphologyEx()` with parameters image source, `cv.MORPH_OPEN`, and kernel.
+    
+    Opening is another name of **erosion followed by dilation**. It is useful to remove noise. We can use `cv.morphologyEx()` with parameters image source, `cv.MORPH_OPEN`, and kernel.
 4. Closing 
-Closing is reversed of opening **dilation followed by erosion**. It is useful to remove small noise inside foreground objects. We can use `cv.morphologyEx` with parameters image source, `cv.MORPH_CLOSE`, and kernel.
+    
+    Closing is reversed of opening **dilation followed by erosion**. It is useful to remove small noise inside foreground objects. We can use `cv.morphologyEx` with parameters image source, `cv.MORPH_CLOSE`, and kernel.
 5. Morphological Gradient
-The difference between dilation and erosion, it will look like outline of the object. We can use `cv.morphologyEx` with parameters image source, `cv.MORPH_GRADIENT`, and kernel.
+    
+    The difference between dilation and erosion, it will look like outline of the object. We can use `cv.morphologyEx` with parameters image source, `cv.MORPH_GRADIENT`, and kernel.
 6. Top Hat
-The difference between input image and opening. `cv.morphologyEx` with parameters image source, `cv.MORPH_TOPHAT`, and kernel.
+    
+    The difference between input image and opening. `cv.morphologyEx` with parameters image source, `cv.MORPH_TOPHAT`, and kernel.
 7. Black Hat
-The difference between input image and closing. `cv.morphologyEx` with parameters image source, `cv.MORPH_BLACKHAT`, and kernel.
+    
+    The difference between input image and closing. `cv.morphologyEx` with parameters image source, `cv.MORPH_BLACKHAT`, and kernel.
 
 Implementation erosion, dilation, gradient, tophat, and blackhat in program:
 1. Use library `cv2`, `numpy`, and `matplotlib`
@@ -577,7 +588,7 @@ for i in range(6):
 plt.show()
 ```
 
-Meanwhile, implementation program opening and closing:
+Besides, implementation program opening and closing:
 1. Use library `cv2`, `numpy`, and `matplotlib`
 2. Load an image1 for opening and an image2 for closing
 3. Define kernel with size 5x5
@@ -622,9 +633,11 @@ plt.show()
 
 # Image Gradients
 1. Sobel and Scharr Derivatives
-Sobel operators is a joint gaussian smoothing and differentiation operation. We can specify the direction of derivatives that is taken (vertical or horizontal). we can use `cv.Sobel()` with parameters image source, output image depth, order of derivative x, order of derivative y, and kernel size. If kernel size = -1, 3x3 Scharr filter is used which give better results.
+    
+    Sobel operators is a joint gaussian smoothing and differentiation operation. We can specify the direction of derivatives that is taken (vertical or horizontal). we can use `cv.Sobel()` with parameters image source, output image depth, order of derivative x, order of derivative y, and kernel size. If kernel size = -1, 3x3 Scharr filter is used which give better results.
 2. Laplacian Derivatives
-It calculates the Laplacian of the image where each derivative is found using Sobel derivatives. We use `cv.Laplacian()` with parameters image source and desired depth of the destination image.
+    
+    It calculates the Laplacian of the image where each derivative is found using Sobel derivatives. We use `cv.Laplacian()` with parameters image source and desired depth of the destination image.
 
 Implementation in program:
 1. Use library `cv2`, `numpy`, and `matplotlib`
@@ -701,13 +714,13 @@ edges = cv.Canny(img, 100, 200)
 
 # show teh output images
 plt.subplot(121)
-plt.imshow(img,cmap = 'gray')
+plt.imshow(img, cmap = 'gray')
 plt.title('Original Image')
 plt.xticks([])
 plt.yticks([])
 
 plt.subplot(122)
-plt.imshow(edges,cmap = 'gray')
+plt.imshow(edges, cmap = 'gray')
 plt.title('Edge Image')
 plt.xticks([])
 plt.yticks([])
@@ -749,14 +762,14 @@ for i in range(6):
 lpA = [gpA[5]]
 for i in range(5,0,-1):
     GE = cv.pyrUp(gpA[i])
-    L = cv.subtract(gpA[i-1],GE)
+    L = cv.subtract(gpA[i-1], GE)
     lpA.append(L)
 
 # generate Laplacian Pyramid for B
 lpB = [gpB[5]]
 for i in range(5,0,-1):
     GE = cv.pyrUp(gpB[i])
-    L = cv.subtract(gpB[i-1],GE)
+    L = cv.subtract(gpB[i-1], GE)
     lpB.append(L)
 
 # Now add left and right halves of images in each level
@@ -774,8 +787,206 @@ for i in range(1,6):
     
 # image with direct connecting each half
 real = np.hstack((A[:,:cols//2],B[:,cols//2:]))
-cv.imwrite('Pyramid_blending2.jpg',ls_)
-cv.imwrite('Direct_blending.jpg',real)
+cv.imwrite('Pyramid_blending2.jpg', ls_)
+cv.imwrite('Direct_blending.jpg', real)
 ```
 
-# Hough Line Transform
+# Contours in OpenCV
+Contours can be explained as a curve joining all the continous points. Contours are useful in object detection and recognition.
+
+## Find Contours
+Implementation 'how to find contours in binary image':
+1. Use library `cv2` and `numpy`
+2. Load an image
+3. Convert image color to gray
+4. Use `cv.threshold()` to create threshold of an image
+5. Find contours in image with `cv.findContours()`
+```
+import numpy as np
+import cv2 as cv
+
+# load an image
+im = cv.imread('test.jpg')
+
+# convert image color to gray
+imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
+
+# create threshold of an image
+ret, thresh = cv.threshold(imgray, 127, 255, 0)
+
+# find contours
+contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+```
+
+# Documentation Color Detection - Optional Assignment
+This program can detect object inside background area. Implementation:
+1. Use library `cv2` and `numpy`
+```
+import cv2 as cv
+import numpy as np
+```
+2. Define empty function `nothing` as an optional argument for trackbar parameter
+```
+def nothing():
+    pass
+```
+3. Capture video from webcam
+```
+webcam = cv.VideoCapture(0)
+```
+4. Create new windows for background and object trackbars
+```
+cv.namedWindow('Colorbars Background')
+cv.namedWindow('Colorbars Object')
+```
+5. Assign strings for title of each trackbar
+```
+hue_high    = 'Hue High'
+hue_low     = 'Hue Low'
+sat_high    = 'Saturation High'
+sat_low     = 'Saturation Low'
+val_high    = 'Value High'
+val_low     = 'Value Low'
+area_min    = 'Area Minimum'
+window      = 'Colorbars Background'
+window2     = 'Colorbars Object'
+```
+6. Begin creating trackbars for background and object
+```
+# for background
+cv.createTrackbar(hue_low, window, 0, 179, nothing)
+cv.createTrackbar(hue_high, window, 0, 179, nothing)
+cv.createTrackbar(sat_low, window, 0, 255, nothing)
+cv.createTrackbar(sat_high, window, 0, 255, nothing)
+cv.createTrackbar(val_low, window, 0, 255, nothing)
+cv.createTrackbar(val_high, window, 0, 255, nothing)
+cv.createTrackbar(area_min, window, 0, 5000, nothing)
+
+# for object
+cv.createTrackbar(hue_low, window2, 0, 179, nothing)
+cv.createTrackbar(hue_high, window2, 0, 179, nothing)
+cv.createTrackbar(sat_low, window2, 0, 255, nothing)
+cv.createTrackbar(sat_high, window2, 0, 255, nothing)
+cv.createTrackbar(val_low, window2, 0, 255, nothing)
+cv.createTrackbar(val_high, window2, 0, 255, nothing)
+cv.createTrackbar(area_min, window2, 0, 5000, nothing)
+```
+7. Start a while loop:
+    
+    1. Read the video capture
+    2. Convert video color to HSV
+    ```
+    while True:
+        _, image_frame = webcam.read()
+        hsv_frame = cv.cvtColor(image_frame, cv.COLOR_BGR2HSV)
+    ```
+    3. Get trackbar positions for background and object
+    ```
+        # for background
+        hue_low_background  = cv.getTrackbarPos(hue_low, window)
+        hue_high_background = cv.getTrackbarPos(hue_high, window)
+        sat_low_background  = cv.getTrackbarPos(sat_low, window)
+        sat_high_background = cv.getTrackbarPos(sat_high, window)
+        val_low_background  = cv.getTrackbarPos(val_low, window)
+        val_high_background = cv.getTrackbarPos(val_high, window)
+        area_min_background = cv.getTrackbarPos(area_min, window)
+
+        # for object
+        hue_low_object  = cv.getTrackbarPos(hue_low, window2)
+        hue_high_object = cv.getTrackbarPos(hue_high, window2)
+        sat_low_object  = cv.getTrackbarPos(sat_low, window2)
+        sat_high_object = cv.getTrackbarPos(sat_high, window2)
+        val_low_object  = cv.getTrackbarPos(val_low, window2)
+        val_high_object = cv.getTrackbarPos(val_high, window2)
+        area_min_object = cv.getTrackbarPos(area_min, window2)
+    ```
+    4. Make array from final values (trackbars background and object)
+    5. Assign array to variables upper and lower
+    ```
+        # for background
+        hsv_lower_background = np.array([hue_low_background, sat_low_background,
+                                        val_low_background], np.uint8)
+        hsv_upper_background = np.array([hue_high_background, sat_high_background,
+                                        val_high_background], np.uint8)    
+
+        # for object
+        hsv_lower_object = np.array([hue_low_object, sat_low_object, val_low_object],
+                                    np.uint8)
+        hsv_upper_object = np.array([hue_high_object, sat_high_object, val_high_object],
+                                    np.uint8)    
+    ```
+    6. Define area minimum background and object from trackbars
+    7. Create masks for background and object
+    ```
+        # for background
+        area_min_background = area_min_background
+        background_mask     = cv.inRange(hsv_frame, hsv_lower_background, hsv_upper_background)
+
+        # for object
+        area_min_object = area_min_object
+        object_mask     = cv.inRange(hsv_frame, hsv_lower_object, hsv_upper_object)
+    ```
+    8. Create new kernel with size 5x5
+    ```
+        kernel = np.ones((5, 5), np.uint8)
+    ```
+    9. Apply Closing to masks (Dilation followed by Erotion)
+    ```
+        # for background mask
+        background_mask = cv.morphologyEx(background_mask, cv.MORPH_OPEN, kernel)
+        cv.imshow("Background Mask", background_mask)
+
+        # for object mask
+        object_mask = cv.morphologyEx(object_mask, cv.MORPH_CLOSE, kernel)
+        cv.imshow("Object Mask", object_mask)
+    ```
+    10. Create contour to track background
+    ```
+        background_contour, hierarchy = cv.findContours(background_mask,
+                                                        cv.RETR_TREE,
+                                                        cv.CHAIN_APPROX_SIMPLE)
+    ```
+    11. In looping for tracking background contour : create contour to track object and create looping for tracking object contour; set limit for object area inside background area
+    ```
+        for b_contour in background_contour:
+            background_area = cv.contourArea(b_contour)
+            if background_area > area_min_background:
+                x, y, w, h = cv.boundingRect(b_contour)
+                image_frame = cv.rectangle(image_frame, (x,y),
+                                        (x + w, y + h),
+                                        (0, 0, 255), 2)
+                
+                cv.putText(image_frame, "Background", (x, y),
+                        cv.FONT_HERSHEY_SIMPLEX, 1.0,
+                        (0, 0, 255))
+                
+                # create contour to track object
+                object_contour, hierarchy = cv.findContours(object_mask,
+                                                            cv.RETR_TREE,
+                                                            cv.CHAIN_APPROX_SIMPLE)
+            
+                for o_contour in object_contour:
+                    object_area = cv.contourArea(o_contour)
+                    if object_area > area_min_object:
+                        x2, y2, w2, h2 = cv.boundingRect(o_contour)
+                        # if object inside background area
+                        if x2 >= x and y2 >= y and x2 + w2 <= x + w and y2 + h2 <= y + h:
+                            image_frame_2 = cv.rectangle(image_frame, (x2, y2),
+                                                        (x2 + w2, y2 + h2),
+                                                        (0, 255, 0), 2)
+                            
+                            cv.putText(image_frame_2, "Object", (x2, y2),
+                                    cv.FONT_HERSHEY_SIMPLEX, 1.0,
+                                    (0, 255, 0))
+    ```
+    12. Show result color detection window
+    ```
+        cv.imshow("Color detection", image_frame)
+    ```
+    13. End loop when press 'q'
+    ```
+        if cv.waitKey(1) & 0xFF == ord('q'):
+            cap.release()
+            cv.destroyAllWindows()
+            break
+    ```
