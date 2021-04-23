@@ -990,3 +990,10 @@ cv.createTrackbar(area_min, window2, 0, 5000, nothing)
             cv.destroyAllWindows()
             break
     ```
+
+# References
+https://docs.opencv.org/master/d2/d96/tutorial_py_table_of_contents_imgproc.html
+
+https://www.geeksforgeeks.org/multiple-color-detection-in-real-time-using-python-opencv/
+
+https://botforge.wordpress.com/2016/07/02/basic-color-tracker-using-opencv-python/
