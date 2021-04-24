@@ -10,7 +10,7 @@ Know how to change color space to another: BGR -> Gray, BGR -> HSV, etc. We can 
 5. Threshold HSV color using `mask` to get only colors that we want (blue color)
 6. Use `cv.bitwise_and()` to merge `mask` and original image: `frame`
 7. If we press escape, looping will be ended
-```
+```python
 import cv2 as cv
 import numpy as np
 
@@ -55,7 +55,7 @@ By using function `cv.resize()`, we can resize the image. In this function, ther
     * Define scale of `height` and `width` first, and then pass it into parameter `dsize`
 4. Show an image after being resized
 5. If we press escape, looping will be ended
-```
+```python
 import numpy as np
 import cv2 as cv
 
@@ -91,7 +91,7 @@ Translation is about object/image location. If we want to shift an image, we can
 5. Pass matrix into `cv.warpAffine()`
 6. Show an image after translation
 7. If we press escape, looping will be ended
-```
+```python
 import numpy as np
 import cv2 as cv
 
@@ -125,7 +125,7 @@ Rotation of an image with theta angle can represent by Matrix 2x2. We can use `c
 6. Show an image after rotation
 7. If we press escape, looping will be ended
 
-```
+```python
 import cv2 as cv
 import numpy as np
 
@@ -159,7 +159,7 @@ We need three points from input and their corresponding locations in the output 
 6. Function `cv.getAffineTransform()` will create matrix 2x3 that stores points from variable `pts1` and `pts2`
 7. Then pass that matrix into `cv.warpAffine()`
 8. Show input and output image
-```
+```python
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -204,7 +204,7 @@ In perspective transformation, we need 3x3 transformation matrix and four points
 6. Function `cv.getPerspectiveTransform()` will create matrix 3x3 that stores points from variable `pts1` and `pts2`
 7. Then pass that matrix into `cv.warpPerspective()`
 8. Show input and output image
-```
+```python
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -261,7 +261,7 @@ From this implementation code, the steps are:
     * `plt.subplot()` to show and compare those 5 types of threshold
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```python
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
@@ -313,7 +313,7 @@ Implementation steps of adaptive thresholding:
     * `plt.subplot()` to show and compare an image with grayscale, an image with global thresholding, and two images with adaptive thresholding
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```python
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
@@ -362,7 +362,7 @@ In global thresholding, threshold value is provided and chosen. But in Otsu's bi
     * `plt.subplot()` to show and compare an image with global thresholding, an image after Otsu's thresholding being applied, and an image with Gaussian blur and Otsu's thresholding
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```python
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
@@ -422,7 +422,7 @@ If we want to try an averaging filter on an image, we can use `cv.filter2D()`. I
     * ddepth or desire depth of destination image
     * kernel
 5. Show an original image and the result image after being filtered
-```
+```py
 import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
@@ -482,7 +482,7 @@ Implementation in program:
     * `plt.subplot()` to show and compare an original image, and four images from image blurring
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```py
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
@@ -554,7 +554,7 @@ Implementation erosion, dilation, gradient, tophat, and blackhat in program:
     * `plt.subplot()` to show and compare an original image, and five images from morphological transformations
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```py
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
@@ -600,7 +600,7 @@ Besides, implementation program opening and closing:
     * `plt.subplot()` to show and compare images before opening-after opening and before closing-after closing
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```py
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
@@ -650,7 +650,7 @@ Implementation in program:
     * `plt.subplot()` to show and compare an original image, laplacian, sobel x, and sobel y
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```py
 import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
@@ -701,7 +701,7 @@ Implementation in program:
     * `plt.subplot()` to show and compare an original image with an edge image
     * `plt.imshow()` and `plt.title()` to show images and titles
     * `plt.xticks()` and `plt.yticks()` to custom coordinate lines
-```
+```py
 import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
@@ -737,7 +737,7 @@ Image blending is one apaplication of pyramids. Image blending with pyramids giv
 4. Generate laplacian pyramid for apple and orange
 5. Join the left half of apple and right half of orange in each levels of Laplacian pyramids.
 6. Reconstruct joint image
-```
+```py
 import cv2 as cv
 import numpy as np,sys
 
@@ -805,7 +805,7 @@ Implementation 'how to find contours in binary image':
     * source image
     * contour retrieval mode
     * contour approximation method
-```
+```py
 import numpy as np
 import cv2 as cv
 
@@ -830,15 +830,15 @@ To draw the contours, we use `cv.drawContours()` with parameters:
     * index of contours
     * color, thickness, etc.
 1. To draw all the contours in an image:
-```
+```py
 cv.drawContours(img, contours, -1, (0,255,0), 3)
 ```
 2. To draw an individual contour
-```
+```py
 cv.drawContours(img, contours, 3, (0,255,0), 3)
 ```
 3. Another method
-```
+```py
 cnt = contours[4]
 cv.drawContours(img, [cnt], 0, (0,255,0), 3)
 ```
@@ -851,26 +851,26 @@ Contour approximation method is the third argument in function `cv.findContours(
 # Documentation Color Detection - Optional Assignment
 This program can detect object inside background area. Implementation:
 1. Use library `cv2` and `numpy`
-```
+```py
 import cv2 as cv
 import numpy as np
 ```
 2. Define empty function `nothing` as an optional argument for trackbar parameter
-```
+```py
 def nothing():
     pass
 ```
 3. Capture video from webcam
-```
+```py
 webcam = cv.VideoCapture(0)
 ```
 4. Create new windows for background and object trackbars
-```
+```py
 cv.namedWindow('Colorbars Background')
 cv.namedWindow('Colorbars Object')
 ```
 5. Assign strings for title of each trackbar
-```
+```py
 hue_high    = 'Hue High'
 hue_low     = 'Hue Low'
 sat_high    = 'Saturation High'
@@ -882,7 +882,7 @@ window      = 'Colorbars Background'
 window2     = 'Colorbars Object'
 ```
 6. Begin creating trackbars for background and object
-```
+```py
 # for background
 cv.createTrackbar(hue_low, window, 0, 179, nothing)
 cv.createTrackbar(hue_high, window, 0, 179, nothing)
@@ -905,13 +905,13 @@ cv.createTrackbar(area_min, window2, 0, 5000, nothing)
     
     1. Read the video capture
     2. Convert video color to HSV
-    ```
+    ```py
     while True:
         _, image_frame = webcam.read()
         hsv_frame = cv.cvtColor(image_frame, cv.COLOR_BGR2HSV)
     ```
     3. Get trackbar positions for background and object
-    ```
+    ```py
         # for background
         hue_low_background  = cv.getTrackbarPos(hue_low, window)
         hue_high_background = cv.getTrackbarPos(hue_high, window)
@@ -932,7 +932,7 @@ cv.createTrackbar(area_min, window2, 0, 5000, nothing)
     ```
     4. Make array from final values (trackbars background and object)
     5. Assign array to variables upper and lower
-    ```
+    ```py
         # for background
         hsv_lower_background = np.array([hue_low_background, sat_low_background,
                                         val_low_background], np.uint8)
@@ -947,7 +947,7 @@ cv.createTrackbar(area_min, window2, 0, 5000, nothing)
     ```
     6. Define area minimum background and object from trackbars
     7. Create masks for background and object
-    ```
+    ```py
         # for background
         area_min_background = area_min_background
         background_mask     = cv.inRange(hsv_frame, hsv_lower_background, hsv_upper_background)
@@ -957,11 +957,11 @@ cv.createTrackbar(area_min, window2, 0, 5000, nothing)
         object_mask     = cv.inRange(hsv_frame, hsv_lower_object, hsv_upper_object)
     ```
     8. Create new kernel with size 5x5
-    ```
+    ```py
         kernel = np.ones((5, 5), np.uint8)
     ```
     9. Apply Closing to masks (Dilation followed by Erotion)
-    ```
+    ```py
         # for background mask
         background_mask = cv.morphologyEx(background_mask, cv.MORPH_OPEN, kernel)
         cv.imshow("Background Mask", background_mask)
@@ -971,13 +971,13 @@ cv.createTrackbar(area_min, window2, 0, 5000, nothing)
         cv.imshow("Object Mask", object_mask)
     ```
     10. Create contour to track background
-    ```
+    ```py
         background_contour, hierarchy = cv.findContours(background_mask,
                                                         cv.RETR_TREE,
                                                         cv.CHAIN_APPROX_SIMPLE)
     ```
     11. In looping for tracking background contour : create contour to track object and create looping for tracking object contour; set limit for object area inside background area
-    ```
+    ```py
         for b_contour in background_contour:
             background_area = cv.contourArea(b_contour)
             if background_area > area_min_background:
@@ -1010,11 +1010,11 @@ cv.createTrackbar(area_min, window2, 0, 5000, nothing)
                                     (0, 255, 0))
     ```
     12. Show result color detection window
-    ```
+    ```py
         cv.imshow("Color detection", image_frame)
     ```
     13. End loop when press 'q'
-    ```
+    ```py
         if cv.waitKey(1) & 0xFF == ord('q'):
             cap.release()
             cv.destroyAllWindows()
